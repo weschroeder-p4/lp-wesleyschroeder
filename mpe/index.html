@@ -147,13 +147,19 @@ section{position:relative}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn-pulse{animation:none}}
 
 /* ===== HERO ===== */
-.hero{padding:90px 0 70px;text-align:center;overflow:hidden}
+.hero{padding:90px 0 70px;overflow:hidden}
 .hero .glow.g1{width:560px;height:560px;background:var(--green);top:-220px;left:50%;transform:translateX(-50%);opacity:.18}
-.hero h1{font-size:clamp(2.2rem,6vw,4.5rem);font-weight:800;margin:26px auto 22px;max-width:880px}
-.hero p.sub{font-size:clamp(1.02rem,2.2vw,1.35rem);color:var(--muted);max-width:640px;margin:0 auto 38px}
-.hero .map-mock{margin:54px auto 0;max-width:780px}
+.hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-text{text-align:left}
+.hero h1{font-size:clamp(2rem,4.6vw,3.6rem);font-weight:800;margin:24px 0 20px}
+.hero p.sub{font-size:clamp(1rem,1.6vw,1.18rem);color:var(--muted);max-width:520px;margin:0 0 30px}
+.hero .map-mock{margin:0;max-width:none}
+.hero-mockup{position:relative;text-align:center}
+.hero-mockup picture{display:block}
+.hero-mockup img{width:100%;height:auto;max-width:840px;margin:0 auto;filter:drop-shadow(0 0 70px rgba(255,255,255,0.20)) drop-shadow(0 0 24px rgba(255,255,255,0.10))}
+.hero-mockup.placeholder{aspect-ratio:3/2;display:grid;place-items:center;font-size:5rem;background:var(--surface);border:1px solid var(--border);border-radius:18px;max-width:520px;margin:0 auto}
 
-.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:42px}
+.badges{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:12px;margin-top:0}
 .badge{
   display:flex;align-items:center;gap:10px;
   background:var(--surface);border:1px solid var(--border);
@@ -181,15 +187,22 @@ section{position:relative}
 .shead p{color:var(--muted);font-size:1.08rem;margin-top:18px}
 
 /* ===== PROBLEM ===== */
-.problem{padding:90px 0;background:linear-gradient(180deg,transparent,var(--bg-2))}
-.problem-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.problem{position:relative;padding:120px 0;min-height:560px;overflow:hidden;background-color:var(--bg-2);background-image:url(assets/apagando-incendios.webp);background-repeat:no-repeat;background-position:right center;background-size:auto 100%}
+.problem::before{content:"";position:absolute;inset:0;background:linear-gradient(to right,var(--bg-2) 0%,var(--bg-2) 38%,rgba(14,16,20,0.92) 50%,rgba(14,16,20,0.45) 68%,rgba(14,16,20,0) 88%);z-index:1;pointer-events:none}
+.problem .wrap{position:relative;z-index:2}
+.problem-content{max-width:560px}
 .problem h2{font-size:clamp(1.6rem,4vw,2.7rem);font-weight:800;margin-bottom:24px}
 .problem p{color:var(--muted);font-size:1.06rem;margin-bottom:18px}
 .lack{display:flex;flex-direction:column;gap:14px;margin:30px 0}
-.lack-item{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--red);padding:16px 20px;border-radius:12px;font-weight:600}
+.lack-item{display:flex;align-items:center;gap:14px;background:rgba(20,23,28,0.85);backdrop-filter:blur(4px);border:1px solid var(--border);border-left:3px solid var(--red);padding:16px 20px;border-radius:12px;font-weight:600}
 .lack-item svg{flex:none}
+.problem-callout{margin-top:30px;padding:22px 26px;background:rgba(20,23,28,0.85);backdrop-filter:blur(4px);border:1px solid var(--border);border-radius:14px;color:var(--muted);font-size:1.05rem}
+.problem-callout strong{color:var(--text)}
+/* legacy fire-card (mantido para compatibilidade caso volte) */
 .fire-card{background:linear-gradient(160deg,var(--surface),var(--bg-2));border:1px solid var(--border);border-radius:24px;padding:40px;font-size:1.12rem;color:var(--muted);position:relative;overflow:hidden}
 .fire-card .emoji{font-size:3rem;display:block;margin-bottom:16px}
+.fire-card .fire-pic{display:block;margin-bottom:18px;max-width:260px}
+.fire-card .fire-pic img{width:100%;height:auto;border-radius:14px;display:block}
 .fire-card strong{color:var(--text)}
 
 /* ===== SOLUTION / imagine ===== */
@@ -202,9 +215,15 @@ section{position:relative}
 
 /* delivers band */
 .delivers{padding:70px 0}
-.delivers-inner{background:linear-gradient(135deg,rgba(34,224,123,.12),rgba(34,224,123,.02));border:1px solid rgba(34,224,123,.25);border-radius:28px;padding:56px;text-align:center}
-.delivers-inner h2{font-size:clamp(1.5rem,4vw,2.6rem);font-weight:800;max-width:760px;margin:0 auto 18px}
-.delivers-inner p{color:var(--muted);font-size:1.1rem;max-width:620px;margin:0 auto}
+.delivers-inner{background:linear-gradient(135deg,rgba(34,224,123,.12),rgba(34,224,123,.02));border:1px solid rgba(34,224,123,.25);border-radius:28px;padding:56px}
+.delivers-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.delivers-text{text-align:left}
+.delivers-text h2{font-size:clamp(1.5rem,3.6vw,2.4rem);font-weight:800;margin:0 0 18px}
+.delivers-text p{color:var(--muted);font-size:1.08rem;margin:0}
+.delivers-mockup{position:relative;text-align:center}
+.delivers-mockup picture{display:block}
+.delivers-mockup img{width:100%;max-width:420px;height:auto;border-radius:14px;filter:drop-shadow(0 22px 45px rgba(0,0,0,.45));margin:0 auto}
+.delivers-mockup.placeholder{aspect-ratio:3/2;display:grid;place-items:center;font-size:4.5rem;background:var(--bg);border:1px solid var(--border);border-radius:18px}
 
 /* ===== STEPS ===== */
 .steps{padding:90px 0;background:linear-gradient(180deg,var(--bg),var(--bg-2))}
@@ -215,6 +234,7 @@ section{position:relative}
 .step .n::before{content:counter(step)}
 .step h3{font-size:1.08rem;font-weight:700;margin-bottom:10px}
 .step p{color:var(--muted);font-size:.94rem}
+.step:not(:last-child)::after{content:"→";position:absolute;top:37px;right:-22px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.7rem;line-height:1;color:rgba(34,224,123,.7);z-index:3;pointer-events:none}
 
 /* ===== FOR WHOM ===== */
 .forwhom{padding:90px 0}
@@ -330,13 +350,24 @@ footer .links a:hover{color:var(--green)}
 
 /* ===== responsive ===== */
 @media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-text{text-align:center}
+  .hero p.sub{margin-left:auto;margin-right:auto}
+  .badges{justify-content:center}
+  .problem{padding:280px 0 60px;min-height:0;background-position:center top;background-size:100% auto}
+  .problem::before{background:linear-gradient(to bottom,transparent 0%,rgba(14,16,20,0.4) 28%,var(--bg-2) 52%)}
+  .problem-content{max-width:none}
   .problem-grid{grid-template-columns:1fr}
   .imagine-grid{grid-template-columns:1fr}
   .steps-grid{grid-template-columns:repeat(2,1fr)}
+  .step:not(:last-child)::after{display:none}
   .about-grid{grid-template-columns:1fr}
   .fw-grid{grid-template-columns:1fr}
   .mm-grid{grid-template-columns:repeat(2,1fr)}
   .delivers-inner,.serious-card{padding:36px 26px}
+  .delivers-grid{grid-template-columns:1fr;gap:30px;text-align:center}
+  .delivers-text{text-align:center}
+  .delivers-mockup img{max-width:340px}
   .pricecard.wide{max-width:560px;padding:38px 28px}
   .pc-inner{grid-template-columns:1fr;gap:32px}
   .pc-inner.rev .pc-mockup{order:0}
@@ -354,7 +385,8 @@ footer .links a:hover{color:var(--green)}
   .stack-item{padding:16px 18px;gap:12px}
   .stack-item .name{font-size:.92rem}
   .stack-item .bx{width:36px;height:36px}
-  .steps-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr;gap:30px}
+  .step:not(:last-child)::after{display:block;content:"↓";top:auto;bottom:-26px;right:auto;left:50%;transform:translateX(-50%);font-size:1.5rem}
   .countdown{gap:8px}
   .cd-box{min-width:0;flex:1;padding:12px 4px}
   .cd-box .num{font-size:1.5rem}
@@ -378,29 +410,23 @@ footer .links a:hover{color:var(--green)}
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="glow g1"></div>
-  <div class="wrap" style="position:relative;z-index:1">
-    <span class="tag reveal">★ Mapa do Planejamento Estratégico</span>
-    <h1 class="reveal d1">Transforme a confusão do seu negócio em um <span class="green">plano claro</span> para crescer</h1>
-    <p class="sub reveal d2">Tenha acesso agora mesmo a um modelo para planejar estrategicamente os objetivos e metas do seu negócio.</p>
-
-    <div class="badges reveal d3">
-      <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#22E07B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Simples de aplicar</div>
-      <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="#22E07B" stroke-width="2"/><path d="M7 20h10" stroke="#22E07B" stroke-width="2" stroke-linecap="round"/></svg> Visual e direto ao ponto</div>
-      <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" stroke="#22E07B" stroke-width="2" stroke-linejoin="round"/></svg> Acesso imediato</div>
-    </div>
-
-    <div class="map-mock reveal d4">
-      <div class="mm-head">
-        <span class="mm-dot" style="background:#FF5C5C"></span>
-        <span class="mm-dot" style="background:#FFB347"></span>
-        <span class="mm-dot" style="background:#22E07B"></span>
-        <span class="mm-title">mapa-planejamento-estrategico</span>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="tag reveal">★ Mapa do Planejamento Estratégico</span>
+        <h1 class="reveal d1">Transforme a confusão do seu negócio em um <span class="green">plano claro</span> para crescer</h1>
+        <p class="sub reveal d2">Tenha acesso agora mesmo a um modelo para planejar estrategicamente os objetivos e metas do seu negócio.</p>
+        <div class="badges reveal d3">
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#22E07B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Simples de aplicar</div>
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="#22E07B" stroke-width="2"/><path d="M7 20h10" stroke="#22E07B" stroke-width="2" stroke-linecap="round"/></svg> Visual e direto ao ponto</div>
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" stroke="#22E07B" stroke-width="2" stroke-linejoin="round"/></svg> Acesso imediato</div>
+        </div>
       </div>
-      <div class="mm-grid">
-        <div class="mm-cell"><div class="t">Objetivos</div><div class="bar fill w85"></div><div class="bar w70"></div><div class="bar w50"></div></div>
-        <div class="mm-cell"><div class="t">Indicadores</div><div class="bar fill w70"></div><div class="bar w85"></div><div class="bar w40"></div></div>
-        <div class="mm-cell"><div class="t">Metas</div><div class="bar fill w50"></div><div class="bar w70"></div><div class="bar w85"></div></div>
-        <div class="mm-cell"><div class="t">Ações</div><div class="bar fill w85"></div><div class="bar w40"></div><div class="bar w70"></div></div>
+      <div class="hero-mockup reveal d4">
+        <picture>
+          <source srcset="assets/mockup-hero.webp" type="image/webp">
+          <img src="assets/mockup-hero.png" width="1243" height="893" decoding="async" fetchpriority="high" alt="Mapa do Planejamento Estratégico" onerror="var m=this.closest('.hero-mockup');m.classList.add('placeholder');m.innerHTML='🗺️';">
+        </picture>
       </div>
     </div>
   </div>
@@ -421,20 +447,15 @@ footer .links a:hover{color:var(--green)}
 <!-- ===== PROBLEM ===== -->
 <section class="problem">
   <div class="wrap">
-    <div class="problem-grid">
-      <div class="reveal">
-        <h2>Você vive apagando incêndios e sente que seu negócio está andando em círculos?</h2>
-        <p>Todo começo de mês é a mesma coisa: você define metas na cabeça (ou até escreve em um rascunho), tenta organizar tudo na pressa… <strong style="color:var(--text)">mas quando vê, já está no meio do mês e nada saiu do lugar.</strong></p>
-        <div class="lack">
-          <div class="lack-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Falta clareza</div>
-          <div class="lack-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Falta direção</div>
-          <div class="lack-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Falta um plano que realmente funcione no dia a dia</div>
-        </div>
+    <div class="problem-content reveal">
+      <h2>Você vive apagando incêndios e sente que seu negócio está andando em círculos?</h2>
+      <p>Todo começo de mês é a mesma coisa: você define metas na cabeça (ou até escreve em um rascunho), tenta organizar tudo na pressa… <strong style="color:var(--text)">mas quando vê, já está no meio do mês e nada saiu do lugar.</strong></p>
+      <div class="lack">
+        <div class="lack-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Falta clareza</div>
+        <div class="lack-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Falta direção</div>
+        <div class="lack-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01M10.3 3.9L2.4 18a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Falta um plano que realmente funcione no dia a dia</div>
       </div>
-      <div class="fire-card reveal d2">
-        <span class="emoji">🔥</span>
-        Enquanto isso, <strong>as contas chegam, as ideias se acumulam e os resultados… não aparecem.</strong>
-      </div>
+      <p class="problem-callout">Enquanto isso, <strong>as contas chegam, as ideias se acumulam e os resultados… não aparecem.</strong></p>
     </div>
   </div>
 </section>
@@ -468,9 +489,19 @@ footer .links a:hover{color:var(--green)}
 <section class="delivers">
   <div class="wrap">
     <div class="delivers-inner reveal">
-      <span class="tag" style="margin-bottom:18px">É exatamente isso que o Mapa entrega</span>
-      <h2>Um modelo visual, prático e direto ao ponto que <span class="green">transforma confusão em direção</span></h2>
-      <p>Em poucas horas você terá seu plano estratégico pronto para executar.</p>
+      <div class="delivers-grid">
+        <div class="delivers-text">
+          <span class="tag" style="margin-bottom:18px">É exatamente isso que o Mapa entrega</span>
+          <h2>Um modelo visual, prático e direto ao ponto que <span class="green">transforma confusão em direção</span></h2>
+          <p>Em poucas horas você terá seu plano estratégico pronto para executar.</p>
+        </div>
+        <div class="delivers-mockup">
+          <picture>
+            <source srcset="assets/mockup-entrega.webp" type="image/webp">
+            <img src="assets/mockup-entrega.png" width="900" height="507" loading="lazy" decoding="async" alt="Mapa do Planejamento Estratégico preenchido" onerror="var m=this.closest('.delivers-mockup');m.classList.add('placeholder');m.innerHTML='🗺️';">
+          </picture>
+        </div>
+      </div>
     </div>
   </div>
 </section>
